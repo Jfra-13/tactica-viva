@@ -31,6 +31,7 @@ Los equipos amateur explican tácticas con lapicero y una pizarra que se borra. 
 React + TypeScript (Vite) · react-konva · Zustand · TanStack Query · Tailwind + shadcn/ui · zod · Supabase (Auth, Postgres, Realtime) · Cloudflare · PWA
 
 ## Arranque rápido (disponible tras la Fase 0)
+Requiere Node 22 (`nvm use` lee `.nvmrc`) y pnpm 10 (`corepack enable` usa la versión de `packageManager`).
 ```bash
 pnpm install
 cp .env.example .env.local   # completar claves de Supabase
