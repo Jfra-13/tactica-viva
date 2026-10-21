@@ -102,3 +102,19 @@ tests/e2e/
 - [ ] Probado a 375 px y a ≥1200 px
 - [ ] Sin textos de interfaz fuera de `es.ts`
 - [ ] Documentación actualizada si cambió arquitectura o comandos
+
+## Glosario (interfaz → código)
+| Interfaz (es) | Código (en) |
+|---|---|
+| Jugada | `board` |
+| Paso | `step` |
+| Ficha | `piece` |
+| Plantel / jugador del plantel | `roster` / `rosterPlayer` |
+| Equipo propio / rival | `home` / `away` |
+| Sala en vivo | `liveSession` |
+| Anfitrión | `host` |
+| Propuesta de movimiento | `suggestion` |
+| Plantilla | `template` |
+| Atacar / Replegar | `block.shift` (+ / −) |
+
+Antes de cambiar algo listado en `docs/08-decisiones.md`, pregunta.
