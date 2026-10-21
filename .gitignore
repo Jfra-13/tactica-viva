@@ -147,3 +147,20 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/
+
+# Claude Code (configuración personal)
+.claude/settings.local.json
+
+# Tests
+playwright-report/
+test-results/
+coverage/
