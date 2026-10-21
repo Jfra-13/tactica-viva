@@ -16,8 +16,10 @@ Pizarra táctica de fútbol 7 en tiempo real. El DT (o co-DT) crea alineaciones 
 ```bash
 pnpm dev          # servidor local
 pnpm build        # build de producción
-pnpm lint         # lint
-pnpm typecheck    # tsc --noEmit
+pnpm preview      # sirve el build de producción en local
+pnpm lint         # ESLint
+pnpm typecheck    # tsc -b (sin emitir archivos)
+pnpm format       # Prettier (format:check solo verifica)
 pnpm test         # Vitest (unitarios)
 pnpm test:e2e     # Playwright
 pnpm db:reset     # supabase db reset (local)

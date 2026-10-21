@@ -13,3 +13,5 @@
 | D-007 | 2026-10-21 | Permisos de jugador persistentes hasta que el DT los quite | Pedido del gestor | Permisos por sesión |
 | D-008 | 2026-10-21 | Dueño del equipo protegido | Evita que un co-DT se apropie del equipo | Co-DT idéntico al DT |
 | D-009 | 2026-10-21 | Invitación por link/QR (WhatsApp) + login Google | Así se comunican los equipos amateur | Solo correo |
+| D-010 | 2026-10-21 | Node 22 LTS y pnpm 10 fijados (`engines`, `packageManager`, `.nvmrc`) | Versión disponible en el entorno de desarrollo; soporte LTS hasta abril de 2027 | Node 24 |
+| D-011 | 2026-10-21 | TypeScript ~6.0 | typescript-eslint 8 solo acepta TypeScript < 6.1; con la 7 se rompe el lint con tipos | TypeScript 7.0 |

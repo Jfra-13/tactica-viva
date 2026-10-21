@@ -25,11 +25,13 @@ Los equipos amateur explican tácticas con lapicero y una pizarra que se borra. 
 | [docs/05-biblioteca-f7.md](docs/05-biblioteca-f7.md) | Alineaciones y jugadas predeterminadas |
 | [docs/06-fases-y-tareas.md](docs/06-fases-y-tareas.md) | Plan de desarrollo en tareas para agentes |
 | [docs/07-guia-agentes.md](docs/07-guia-agentes.md) | Cómo gestionar a los agentes paso a paso |
+| [docs/08-decisiones.md](docs/08-decisiones.md) | Decisiones tomadas y su motivo; no se reabren sin consultar |
 
 ## Stack
 React + TypeScript (Vite) · react-konva · Zustand · TanStack Query · Tailwind + shadcn/ui · zod · Supabase (Auth, Postgres, Realtime) · Cloudflare · PWA
 
 ## Arranque rápido (disponible tras la Fase 0)
+Requiere Node 22 (`nvm use` lee `.nvmrc`) y pnpm 10 (`corepack enable` usa la versión de `packageManager`).
 ```bash
 pnpm install
 cp .env.example .env.local   # completar claves de Supabase
