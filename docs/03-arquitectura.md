@@ -7,7 +7,7 @@
 | Render de la pizarra | Konva + react-konva | Pensado para tocar y arrastrar, soporta móvil, capas separadas, exporta imagen | Menos potente que WebGL con miles de objetos; tenemos ~15 |
 | Estado | Zustand | Simple, rápido, selectores finos | Requiere disciplina: todo cambio pasa por comandos |
 | Datos remotos | TanStack Query | Caché y reintentos para listas | Una dependencia más; compensa |
-| Estilos y UI | Tailwind CSS + shadcn/ui | Componentes accesibles dentro del repo, sin peso extra | Riesgo de verse genérico: tokens propios con la skill frontend-design |
+| Estilos y UI | Tailwind CSS + shadcn/ui | Componentes accesibles dentro del repo, sin peso extra | Riesgo de verse genérico: tokens propios definidos con el prototipo de la Fase 1 |
 | Validación | zod | Un esquema para tipos y validación | — |
 | Trazos | perfect-freehand | Trazos suaves con poco código | — |
 | Backend | Supabase (Auth, Postgres, Realtime) | Todo en uno, plan gratuito, RLS para permisos | Límites del plan gratuito y pausa por inactividad (ver abajo) |

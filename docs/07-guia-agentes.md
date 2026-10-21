@@ -9,7 +9,7 @@
 | Implementación | Claude Code | Planear e implementar una tarea a la vez |
 | Revisión | Subagente `revisor` | Revisar los cambios contra `CLAUDE.md` antes de que los veas |
 | Pruebas | Subagente `tester` | Escribir y correr tests E2E |
-| Diseño | Skill frontend-design | Dirección visual y pantallas |
+| Diseño | Claude con artefactos | Dirección visual, prototipo y pantallas |
 
 ## Flujo por tarea (siempre el mismo)
 1. Elige la siguiente tarea de `docs/06-fases-y-tareas.md` cuyas dependencias estén hechas.
@@ -57,8 +57,10 @@ Responde con una lista: ❌ bloqueante, ⚠️ mejorable, ✅ correcto. No edite
 ```
 Más adelante conviene sumar `tester` (escribe y corre E2E con Playwright) y `auditor-rls` (revisa migraciones y políticas). Detalles: https://code.claude.com/docs/en/sub-agents
 
-## Skill de diseño
-- Usa `frontend-design` en la T1.1 para la dirección visual y en cada tarea de pantalla nueva.
+## Diseño
+- T1.1 y T1.2 se trabajan como artefacto de Claude: una página privada que abres en el celular, puedes compartir con tu equipo y se modifica sobre la misma URL hasta aprobarla. No hace falta tener el proyecto creado.
+- En cada tarea de pantalla nueva, el agente sigue `docs/09-diseno.md` y el prototipo de `docs/prototipo/` (ambos se crean en la Fase 1).
+- `frontend-design` es opcional para explorar más ideas.
 - Si no la tienes en Claude Code, búscala en el marketplace oficial de plugins con `/plugin`, o úsala en Claude.ai y lleva los tokens resultantes al repo.
 
 ## Reglas de oro
@@ -74,7 +76,7 @@ Más adelante conviene sumar `tester` (escribe y corre E2E con Playwright) y `au
 |---|---|
 | Inventa funciones no pedidas | Recuérdale el alcance de la tarea y `02-alcance-mvp.md` |
 | Rompe algo que funcionaba | Vuelve al último commit bueno o usa los checkpoints de Claude Code; pide un test que reproduzca el error |
-| Se ve genérico o feo | Pide que use los tokens y la skill frontend-design, con una captura de referencia |
+| Se ve genérico o feo | Pide que siga `docs/09-diseno.md`, los tokens y el prototipo aprobado, con una captura de referencia |
 | Va lento en el celular | Pide medir primero (perfil de rendimiento) y luego corregir |
 
 ## Más adelante: trabajo en paralelo

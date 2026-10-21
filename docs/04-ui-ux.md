@@ -81,7 +81,7 @@ Breakpoints: móvil < 768 px · tablet 768–1199 px · laptop ≥ 1200 px. En e
 - **Avatar:** punto de color o emoji dentro de la ficha, con el número pequeño en una esquina.
 - **Estados:** seleccionada (anillo blanco y leve aumento), sombra del paso anterior (40 % de opacidad), propuesta (borde punteado).
 - **Balón:** diseños originales; nunca réplicas de balones oficiales.
-- **Tokens:** colores, tipografía, radios, espaciado y sombras en `src/shared/ui/tokens.css`, definidos con la skill frontend-design en la Fase 1.
+- **Tokens:** colores, tipografía, radios, espaciado y sombras en `src/shared/ui/tokens.css`, definidos en la Fase 1 a partir del prototipo aprobado (T1.1 a T1.3).
 
 ## Estados y retroalimentación
 - Indicador de conexión: verde (en línea), ámbar (reconectando), rojo (sin conexión, solo lectura).

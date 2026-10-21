@@ -12,7 +12,7 @@
 | Fase | Nombre | Resultado |
 |---|---|---|
 | 0 | Cimientos | Repo, calidad, CI y despliegue |
-| 1 | Diseño y shell | Identidad visual y navegación |
+| 1 | Diseño, prototipo y shell | Diseño aprobado en un prototipo, tokens y navegación (T1.1–T1.2 en paralelo con la Fase 0) |
 | 2 | Cuentas, equipos y plantel | Login, equipos, invitaciones y roles |
 | 3 | Pizarra estática | Cancha, fichas y guardado |
 | 4 | Pasos, balón y animación | Jugadas animadas |
@@ -63,30 +63,42 @@ Objetivo: un proyecto vacío pero profesional, que se prueba y se despliega solo
 
 ---
 
-## Fase 1 — Diseño y shell
-Objetivo: la app tiene identidad propia y se navega bien en celular, tablet y laptop.
+## Fase 1 — Diseño, prototipo y shell
+Objetivo: definir de una vez cómo se ve y se siente la app, y llevarlo a una base que se navega bien en celular, tablet y laptop.
 
-**T1.1 — Dirección visual** 🧑
-- Hacer: con la skill frontend-design, proponer 2 direcciones visuales (paleta, tipografía, fichas y cancha) como mockups estáticos.
-- Listo cuando: eliges una y queda plasmada en `tokens.css`.
-- Depende de: T0.2
+> **T1.1 y T1.2 no usan el código del proyecto y empiezan ya, en paralelo con la Fase 0.** Se trabajan como artefacto de Claude: una página HTML privada que abres en el celular, puedes compartir y se modifica sobre la misma URL hasta aprobarla. El prototipo sirve para decidir y es desechable: la app real se construye con el stack de `03-arquitectura.md`, no copiando su código. Una vez aprobado, cualquier cambio visual se consulta como una decisión más (`08-decisiones.md`).
 
-**T1.2 — Shell responsive**
-- Hacer: rutas (entrar, mis equipos, equipo, editor, sala, invitación); barra inferior en móvil y paneles en tablet y laptop.
+**T1.1 — Exploración visual (artefacto)** 🧑
+- Hacer: un artefacto con 2 o 3 direcciones visuales lado a lado (paleta, tipografía, cancha, fichas local y rival, balón, barra inferior), usando el editor del DT en el celular como pantalla de muestra; iterar sobre el mismo artefacto con tus comentarios.
+- Listo cuando: eliges una dirección (o una mezcla) y queda registrada en `08-decisiones.md`.
+- Depende de: —
+
+**T1.2 — Prototipo navegable (artefacto)** 🧑
+- Hacer: con la dirección elegida, un prototipo interactivo con datos de ejemplo: Mis equipos, Editor del DT (celular y laptop), Sala en vivo del jugador, Biblioteca y Aceptar invitación; fichas arrastrables, pasos y Atacar/Replegar simulados; estados de carga, vacío, error y sin conexión; cancha clara para proyectar.
+- Listo cuando: lo pruebas en tu celular (y, si quieres, con 2 o 3 compañeros), lo apruebas y su código queda guardado en `docs/prototipo/` como referencia.
+- Depende de: T1.1
+
+**T1.3 — Tokens y guía visual**
+- Hacer: llevar la dirección aprobada a `tokens.css` (colores, tipografía, radios, espaciado y sombras) y resumirla en `docs/09-diseno.md` con capturas del prototipo; enlazar ese documento en `CLAUDE.md`.
+- Listo cuando: la página de prueba de T0.2 usa los tokens finales y coincide con el prototipo.
+- Depende de: T1.2, T0.2
+
+**T1.4 — Shell responsive**
+- Hacer: rutas (entrar, mis equipos, equipo, editor, sala, invitación); barra inferior en móvil y paneles en tablet y laptop, según el prototipo.
 - Listo cuando: se navega entre pantallas vacías a 375, 768 y 1280 px sin saltos.
-- Depende de: T1.1
+- Depende de: T1.3
 
-**T1.3 — Componentes base**
-- Hacer: IconButton, BottomSheet, Toast, EmptyState, Skeleton, ConnectionBadge y PieceAvatar.
+**T1.5 — Componentes base**
+- Hacer: IconButton, BottomSheet, Toast, EmptyState, Skeleton, ConnectionBadge y PieceAvatar, según el prototipo.
 - Listo cuando: una página `/dev/ui` (solo en desarrollo) muestra todos sus estados.
-- Depende de: T1.1
+- Depende de: T1.3
 
-**T1.4 — PWA**
+**T1.6 — PWA**
 - Hacer: manifest, íconos, precache del shell y aviso "Nueva versión disponible".
 - Listo cuando: se instala en Android y iPhone y abre sin pantalla en blanco.
-- Depende de: T1.2
+- Depende de: T1.4
 
-✅ **Tú verificas:** instalas la app en tu celular y te convence cómo se ve y se siente.
+✅ **Tú verificas:** la app instalada en tu celular se ve igual que el prototipo aprobado.
 
 ---
 
@@ -102,7 +114,7 @@ Objetivo: cada persona entra, crea o se une a equipos y tiene su rol.
 - Tú: configuras Google OAuth en Google Cloud y en Supabase.
 - Hacer: pantalla de entrada con Google y enlace mágico, sesión persistente, cierre de sesión, creación de profile.
 - Listo cuando: entras con Google en el celular y sigues dentro al reabrir.
-- Depende de: T2.1, T1.2
+- Depende de: T2.1, T1.4
 
 **T2.3 — Mis equipos**
 - Hacer: crear equipo (nombre y color; F7 fijo), listarlos con mi rol, crear las carpetas por categoría automáticamente.
@@ -139,7 +151,7 @@ Objetivo: el DT arma y guarda una alineación con su plantel real.
 **T3.2 — Cancha F7**
 - Hacer: cancha vertical en Konva, capa estática cacheada, ajuste sin deformar, conversión normalizado ↔ píxeles.
 - Listo cuando: la cancha se ve nítida y proporcionada a 375, 768 y 1280 px.
-- Depende de: T1.2, T3.1
+- Depende de: T1.4, T3.1
 
 **T3.3 — Fichas arrastrables**
 - Hacer: fichas propias y rivales según `04-ui-ux.md`; seleccionar y arrastrar dentro de la cancha; mover el nodo y confirmar al soltar.

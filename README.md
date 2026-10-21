@@ -39,7 +39,7 @@ pnpm dev
 ## Estado
 - [x] Análisis y documentación
 - [ ] Fase 0 — Cimientos
-- [ ] Fase 1 — Diseño y shell
+- [ ] Fase 1 — Diseño, prototipo y shell (T1.1–T1.2 en paralelo con la Fase 0)
 - [ ] Fase 2 — Cuentas, equipos y plantel
 - [ ] Fase 3 — Pizarra estática
 - [ ] Fase 4 — Pasos, balón y animación
