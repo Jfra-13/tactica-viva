@@ -49,7 +49,7 @@ Diseño bicolor propio (D-005), dibujado con formas, sin imágenes y sin sombra.
 **Cómo se conectan.** `globals.css` importa Tailwind 4 y `tokens.css`. El bloque `@theme inline reference` solo da nombre a los tokens:
 - No emite variables: el `:root` de `tokens.css` sigue siendo la única fuente de valores.
 - Cada clase lee `var(--token)`.
-- `--*: initial` borra la paleta y las escalas de Tailwind: `bg-red-500`, `p-3`, `text-base` o `rounded-md` no generan nada.
+- `--*: initial` borra la paleta y las escalas de Tailwind: `bg-red-500`, `h-9`, `text-base`, `shadow-md` o `md:p-2` no generan nada.
 
 **Colores.** Los nombres son los de shadcn/ui:
 
@@ -90,9 +90,13 @@ La cancha y las fichas no tienen clases porque las dibuja Konva.
 - Los breakpoints son los únicos valores literales del tema, porque las media queries no leen `var()`.
 - Las duraciones y la opacidad no tienen clase: usa `duration-(--duration-fast)` y `opacity-(--disabled-opacity)`.
 - `transition-*` usa por defecto `--duration-instant` y `--ease-standard`.
+- `border`, `outline` y `ring` sin número usan `--border-w`. El color de borde por defecto es `--color-border`.
 
 **Reglas.**
-- Usa solo clases del tema o `(--token)`. Nada de valores arbitrarios (`p-[13px]`, `bg-[#fff]`): Tailwind no los bloquea, así que se revisan en el PR.
+- Usa solo clases del tema o `(--token)`. Tailwind no bloquea los valores sueltos, así que se revisan en el PR:
+  - Valores arbitrarios: `p-[13px]`, `bg-[#fff]`.
+  - Números directos, que generan CSS aunque no estén en el tema: `duration-300`, `opacity-50`, `border-2`, `ring-2`, `z-10`, `gap-px`.
+  - Trampa: `leading-6` toma `--space-6` (12 px de alto de línea). No uses `leading-*` hasta que haya tokens de alto de línea.
 - Una clase que no está en el tema no genera CSS y no avisa. Si una clase "no hace nada", busca en estas tablas.
 - Si falta un valor:
   1. Agrega el token en `tokens.css`.
@@ -100,11 +104,16 @@ La cancha y las fichas no tienen clases porque las dibuja Konva.
   3. Si la clave tiene nombre (espaciado, radio, sombra, peso o curva), agrégala también en `src/shared/lib/utils.ts`; si no, `cn()` no resuelve el conflicto.
 - Componentes de shadcn/ui: se agregan con `pnpm dlx shadcn@4.22.1 add <nombre>`. Nunca uses `init`, porque reescribe `globals.css` con su paleta. Después:
   - Adapta las clases de Tailwind (`h-9`, `px-4`, `gap-2`…) a los tokens.
+  - Cambia `sm:` y `md:` por `tablet:` y `laptop:`: los breakpoints de Tailwind no existen aquí.
   - Cambia `hover:bg-accent` por `hover:bg-secondary`.
   - Cambia los tintes (`bg-primary/90`) por rellenos sólidos.
   - Revisa el diff de `globals.css`: la CLI puede agregar variables.
+  - Si la CLI ofrece sobrescribir `button.tsx`, responde que no. Algunos componentes (alert-dialog, calendar, pagination) dependen del botón de shadcn:
+    - Importan `buttonVariants` desde `@/shared/ui/button`; aquí está en `button-variants.ts`.
+    - Usan variantes que aquí no existen (`outline`, `destructive`, `link`, `size`).
+  - `components.json` trae `iconLibrary: "lucide"`, así que la CLI instalará `lucide-react` si un componente usa íconos. La librería de íconos aún no está decidida, y lucide usa puntas redondeadas por defecto, mientras que los tokens piden `square` y `miter`.
 - Modo oscuro: es el único. `<html class="dark">` hace que los `dark:` de shadcn/ui apliquen siempre.
-- Botón base: `src/shared/ui/button.tsx`. La herramienta activa se marca con `aria-pressed`, que aplica el relleno sólido de `--tool-active-*`.
+- Botón base: `src/shared/ui/button.tsx`, con las variantes en `button-variants.ts`. La herramienta activa se marca con `aria-pressed`, que aplica el relleno sólido de `--tool-active-*`.
 
 ## Pendientes de la Fase 4
 1. Cancha clara: aplicar `--color-home-on-light` y `--color-on-home-on-light` en la escena del proyector del lienzo.
