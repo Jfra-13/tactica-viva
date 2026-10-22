@@ -6,7 +6,8 @@
  * so classes such as bg-red-500, p-3, text-base or rounded-md generate nothing.
  * Mapping and rules: docs/diseno/direccion-visual.md.
  */
-@import 'tailwindcss';
+/* Only app code generates classes; docs mention class names too. */
+@import 'tailwindcss' source('../..');
 @import './tokens.css';
 
 /* Dark only: `dark:` classes copied from shadcn/ui always apply (<html class="dark">). */
