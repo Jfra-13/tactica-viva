@@ -12,7 +12,7 @@ export const es = {
     statesTitle: 'Estados',
     tool: 'Herramienta',
     disabled: 'Desactivado',
-    toolHint: 'Toca «Herramienta» para activarla o desactivarla.',
+    toolHint: 'Toca la herramienta para activarla o desactivarla.',
     focusHint: 'Con teclado, usa Tab para ver el foco.',
   },
 } as const
