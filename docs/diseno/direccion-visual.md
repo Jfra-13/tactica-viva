@@ -111,7 +111,7 @@ La cancha y las fichas no tienen clases porque las dibuja Konva.
   - Si la CLI ofrece sobrescribir `button.tsx`, responde que no. Algunos componentes (alert-dialog, calendar, pagination) dependen del botón de shadcn:
     - Importan `buttonVariants` desde `@/shared/ui/button`; aquí está en `button-variants.ts`.
     - Usan variantes que aquí no existen (`outline`, `destructive`, `link`, `size`).
-  - `components.json` trae `iconLibrary: "lucide"`, así que la CLI instalará `lucide-react` si un componente usa íconos. La librería de íconos aún no está decidida, y lucide usa puntas redondeadas por defecto, mientras que los tokens piden `square` y `miter`.
+  - `components.json` trae `iconLibrary: "lucide"`, así que la CLI instalará `lucide-react` si un componente usa íconos. Es la librería elegida (D-014), pero usa puntas redondeadas por defecto: usa siempre el envoltorio que aplica `--icon-linecap`, `--icon-linejoin` y `--icon-stroke` (llega en T1.3).
 - Modo oscuro: es el único. `<html class="dark">` hace que los `dark:` de shadcn/ui apliquen siempre.
 - Botón base: `src/shared/ui/button.tsx`, con las variantes en `button-variants.ts`. La herramienta activa se marca con `aria-pressed`, que aplica el relleno sólido de `--tool-active-*`.
 
