@@ -1,0 +1,139 @@
+/*
+ * PizarraF7 design tokens: direction C · Analista (T1.1, decision D-012).
+ * Source of truth: the design canvas (tokens v3) and docs/diseno/direccion-visual.md.
+ * Flat and dark with 1 px rules. Two traits taken from direction B: solid fills for
+ * active states and a 2.2 icon stroke, both for legibility in direct sunlight.
+ * Contrast: text >= 4.5:1, pieces, lines and rings >= 3:1 (WCAG 2.2, script-checked).
+ * Konva cannot read var(): read these values from :root in one place.
+ */
+:root {
+  /* Color: surfaces and text */
+  --color-bg: #0b0e10;
+  --color-surface: #1c2024; /* 1.18:1 on bg */
+  --color-surface-2: #2e3337; /* 1.28:1 on surface */
+  --color-border: #424a50; /* 1 px rules, 1.8:1 on surface */
+  --color-outline: #626b71; /* unfilled control outline, 3:1 on surface */
+  --color-text: #edf1f4; /* 17:1 on bg */
+  --color-text-muted: #97a3ac; /* 4.96:1 on surface-2 (lowest text pair) */
+  --color-skeleton: #33393f;
+  --color-scrim: rgba(
+    11,
+    14,
+    16,
+    0.64
+  ); /* dims the screen under a bottom sheet */
+
+  /* Color: accent and status */
+  --color-accent: #3dd8f2;
+  --color-on-accent: #0b0e10; /* 11.3:1 on accent */
+  --color-live: #ff4d5e;
+  --color-success: #3fd68f;
+  --color-warning: #f7b23b; /* offline is a warning, not an error */
+  --color-danger: #ff6b78;
+  --color-selection: #ffffff;
+
+  /* Pitch: dark (default) */
+  --color-pitch: #163026;
+  --color-pitch-stripe: #19352a; /* provisional: stripes are not drawn yet */
+  --color-pitch-line: rgba(237, 241, 244, 0.8); /* 8.5:1 on pitch */
+  --pitch-line-w: 1.5px;
+  --pitch-zone-opacity: 0.22; /* analyst thirds and lanes, decorative */
+  --arrow-w: 2px;
+  --arrow-dash: 4 4;
+
+  /* Pitch: light (projector and print) */
+  --color-pitch-light: #e6ece8;
+  --color-pitch-line-light: #33413b; /* 8.9:1 on light pitch */
+
+  /* Pieces: home is a filled circle, away is a ring; never rely on colour alone */
+  --color-home: #f4f6f8; /* 13:1 on pitch */
+  --color-on-home: #0b0e10;
+  --color-away: #ff8f40; /* 6.2:1 on pitch */
+  --color-home-on-light: #12161a; /* 15:1 on light pitch */
+  --color-on-home-on-light: #f4f6f8;
+  --color-away-on-light: #b84e0a; /* 4.2:1 on light pitch */
+  --piece-size: 36px; /* drawn size; the hit area is --touch-min */
+  --piece-border: 2px solid var(--color-bg);
+  --piece-away-border: 4px solid var(--color-away);
+  --piece-shadow: 0 0 0 transparent; /* no shadows; not `none`, it is combined in lists */
+  --piece-label-bg: rgba(11, 14, 16, 0.72);
+  --ghost-opacity: 0.4; /* previous-step position */
+  --ball-size: 16px;
+
+  /* Typography */
+  --font-display: 'Fira Sans', 'Helvetica Neue', system-ui, sans-serif;
+  --font-ui: 'Fira Sans', 'Helvetica Neue', system-ui, sans-serif;
+  --font-numeric:
+    'Fira Code', ui-monospace, monospace; /* piece and step numbers */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 15px;
+  --text-lg: 17px;
+  --text-xl: 24px;
+  --text-2xl: 30px;
+  --weight-regular: 500;
+  --weight-medium: 600;
+  --weight-bold: 700;
+  --weight-display: var(--weight-medium);
+
+  /* Spacing */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 16px;
+  --space-8: 24px;
+
+  /* Shape and size */
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-pill: 999px;
+  --radius-control: var(--radius-md); /* 44 px buttons are almost square */
+  --touch-min: 44px;
+  --border-w: 1px;
+  --dot-size: 8px;
+  --avatar-size: 40px;
+  --sheet-handle-w: 32px;
+  --sheet-handle-h: 3px;
+  --skeleton-line: 10px;
+  --disabled-opacity: 0.38;
+  --shadow-sheet: 0 0 0 1px var(--color-border); /* flat: a rule, not a shadow */
+  --focus-ring: 2px solid var(--color-accent);
+
+  /* Icons */
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-stroke: 2.2; /* from B: thicker strokes read better in the sun */
+  --icon-linecap: square;
+  --icon-linejoin: miter;
+
+  /* Components */
+  --pitch-frame: 0 0 0 transparent; /* no frame: the pitch is the plane */
+  --header-rule: inset 0 calc(-1 * var(--border-w)) 0 var(--color-border);
+  --control-bg: var(--color-surface);
+  --control-ring: inset 0 0 0 var(--border-w) var(--color-border);
+  --bar-bg: transparent;
+  --bar-ring: inset 0 var(--border-w) 0 var(--color-border); /* top rule */
+  /* Active states use solid fills (from B); a tint fades out in sunlight. */
+  --step-current-bg: var(--color-text);
+  --step-current-fg: var(--color-bg);
+  --step-current-ring: 0 0 0 transparent;
+  --tool-active-bg: var(--color-accent);
+  --tool-active-fg: var(--color-on-accent);
+  --tool-active-ring: 0 0 0 transparent;
+
+  /* Motion: no bounces */
+  --duration-instant: 60ms; /* button press, tool change */
+  --duration-fast: 100ms; /* toggles, raised-hand badge, piece snap on drop */
+  --duration-base: 160ms; /* toast, notice, suggestion card */
+  --duration-sheet-in: 220ms;
+  --duration-sheet-out: 160ms;
+  --duration-step: 700ms; /* playback, per step */
+  --duration-reduced: 120ms; /* prefers-reduced-motion: pieces fade to their target */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* entering */
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-move: cubic-bezier(0.65, 0, 0.35, 1); /* pieces between steps */
+}
