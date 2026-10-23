@@ -1,9 +1,5 @@
-import { es } from '@/shared/i18n/es'
+import { StylesPreview } from '@/app/StylesPreview'
 
 export function App() {
-  return (
-    <main>
-      <h1>{es.appName}</h1>
-    </main>
-  )
+  return <StylesPreview />
 }

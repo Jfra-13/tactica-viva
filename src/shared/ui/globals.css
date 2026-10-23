@@ -1,0 +1,137 @@
+/*
+ * App stylesheet: Tailwind 4 wired to tokens.css (T0.2).
+ * tokens.css is the only source of values. The @theme block only names those
+ * tokens for Tailwind: `reference` emits no variables and `inline` makes every
+ * utility read var(--token). `--*: initial` drops Tailwind's palette and scales,
+ * so classes such as bg-red-500, h-9, text-base or shadow-md generate nothing.
+ * Bare numbers still do (duration-300, opacity-50, border-2, z-10): avoid them.
+ * Mapping and rules: docs/diseno/direccion-visual.md.
+ */
+/* Only app code generates classes; docs mention class names too. */
+@import 'tailwindcss' source('../..');
+@import './tokens.css';
+
+/* Dark only: `dark:` classes copied from shadcn/ui always apply (<html class="dark">). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline reference {
+  --*: initial;
+
+  /* Colors: shadcn/ui names */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-text);
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-text);
+  --color-primary: var(--color-accent);
+  --color-primary-foreground: var(--color-on-accent);
+  --color-secondary: var(--color-surface-2);
+  --color-secondary-foreground: var(--color-text);
+  --color-muted: var(--color-surface);
+  --color-muted-foreground: var(--color-text-muted);
+  /* Our cyan accent, not shadcn's hover surface (use secondary for that). */
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-on-accent);
+  --color-destructive: var(--color-danger);
+  --color-border: var(--color-border);
+  --color-input: var(--color-outline);
+  --color-ring: var(--color-accent);
+
+  /* Colors: tokens without a shadcn/ui name */
+  --color-control: var(--control-bg);
+  --color-tool-active: var(--tool-active-bg);
+  --color-tool-active-foreground: var(--tool-active-fg);
+  --color-live: var(--color-live);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-skeleton: var(--color-skeleton);
+  --color-scrim: var(--color-scrim);
+  --color-selection: var(--color-selection);
+
+  /* Spacing and sizes: p-1 is --space-1 (2 px), not Tailwind's 4 px */
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-7: var(--space-7);
+  --spacing-8: var(--space-8);
+  --spacing-touch: var(--touch-min);
+  --spacing-icon-sm: var(--icon-sm);
+  --spacing-icon-md: var(--icon-md);
+
+  /* Typography. --weight-display has no class: font-display is the family. */
+  --font-display: var(--font-display);
+  --font-ui: var(--font-ui);
+  --font-numeric: var(--font-numeric);
+  --text-xs: var(--text-xs);
+  --text-sm: var(--text-sm);
+  --text-md: var(--text-md);
+  --text-lg: var(--text-lg);
+  --text-xl: var(--text-xl);
+  --text-2xl: var(--text-2xl);
+  --font-weight-regular: var(--weight-regular);
+  --font-weight-medium: var(--weight-medium);
+  --font-weight-bold: var(--weight-bold);
+
+  /* Shape: rules and rings are box shadows */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+  --radius-control: var(--radius-control);
+  --shadow-control: var(--control-ring);
+  --shadow-sheet: var(--shadow-sheet);
+  --shadow-header: var(--header-rule);
+  --shadow-bar: var(--bar-ring);
+  --shadow-tool-active: var(--tool-active-ring);
+
+  /* Motion (durations have no Tailwind key: use duration-(--duration-fast)) */
+  --ease-standard: var(--ease-standard);
+  --ease-exit: var(--ease-exit);
+  --ease-move: var(--ease-move);
+
+  /* Media queries cannot read var(): literal values from CLAUDE.md */
+  --breakpoint-tablet: 48rem; /* >= 768 px */
+  --breakpoint-laptop: 75rem; /* >= 1200 px */
+
+  /* Defaults used by preflight and by bare border, outline, ring and transition-* */
+  --default-border-width: var(--border-w);
+  --default-outline-width: var(--border-w);
+  --default-ring-width: var(--border-w);
+  --default-font-family: var(--font-ui);
+  --default-mono-font-family: var(--font-numeric);
+  --default-transition-duration: var(--duration-instant);
+  --default-transition-timing-function: var(--ease-standard);
+}
+
+/* Keyboard focus, offset so it also shows on filled controls. */
+@utility focus-ring {
+  outline: var(--focus-ring);
+  outline-offset: var(--space-1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  /* Preflight leaves borders in currentColor; shadcn/ui expects --color-border. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+
+  /* Font family and tap highlight already come from preflight. */
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-md);
+    font-weight: var(--weight-regular);
+  }
+}
