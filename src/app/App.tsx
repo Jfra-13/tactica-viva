@@ -1,5 +1,6 @@
-import { StylesPreview } from '@/app/StylesPreview'
+import { RouterProvider } from 'react-router/dom'
+import { router } from '@/app/router'
 
 export function App() {
-  return <StylesPreview />
+  return <RouterProvider router={router} />
 }

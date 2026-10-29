@@ -5,6 +5,7 @@
 |---|---|---|---|
 | Frontend | React + TypeScript con Vite (SPA) | Todo está tras el login, no necesitamos SSR; bundle liviano y build rápido | Sin SEO: no importa en el MVP; una landing se hace aparte si hace falta |
 | Render de la pizarra | Konva + react-konva | Pensado para tocar y arrastrar, soporta móvil, capas separadas, exporta imagen | Menos potente que WebGL con miles de objetos; tenemos ~15 |
+| Rutas | React Router (modo librería) | Estándar, `lazy` por ruta para dejar la pizarra fuera del bundle inicial | Rutas sin tipos; TanStack Router si llegan a hacer falta |
 | Estado | Zustand | Simple, rápido, selectores finos | Requiere disciplina: todo cambio pasa por comandos |
 | Datos remotos | TanStack Query | Caché y reintentos para listas | Una dependencia más; compensa |
 | Estilos y UI | Tailwind CSS + shadcn/ui | Componentes accesibles dentro del repo, sin peso extra | Riesgo de verse genérico: tokens propios con la skill frontend-design |
