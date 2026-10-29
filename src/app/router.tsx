@@ -1,6 +1,7 @@
 import { createBrowserRouter, type RouteObject } from 'react-router'
 import { NotFoundPage } from '@/app/NotFoundPage'
 import { RouteErrorPage } from '@/app/RouteErrorPage'
+import { RouteSkeleton } from '@/app/RouteSkeleton'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { InvitePage } from '@/features/teams/InvitePage'
 import { TeamPage } from '@/features/teams/TeamPage'
@@ -10,9 +11,9 @@ import { TeamsPage } from '@/features/teams/TeamsPage'
 const devRoutes: RouteObject[] = import.meta.env.DEV
   ? [
       {
-        path: '/dev/styles',
+        path: '/dev/ui',
         lazy: async () => ({
-          Component: (await import('@/app/StylesPreview')).StylesPreview,
+          Component: (await import('@/app/DevUiPage')).DevUiPage,
         }),
       },
     ]
@@ -40,8 +41,13 @@ const routes: RouteObject[] = [
   { path: '*', Component: NotFoundPage },
 ]
 
-// Pathless parent: one error boundary for every screen.
-// ponytail: no loading fallback for lazy routes yet; T1.3 brings Skeleton.
+// Pathless parent: one error boundary and one loading fallback for every
+// screen. HydrateFallback only shows on first load; in-app navigation keeps
+// the current screen until the next one is ready.
 export const router = createBrowserRouter([
-  { ErrorBoundary: RouteErrorPage, children: routes },
+  {
+    ErrorBoundary: RouteErrorPage,
+    HydrateFallback: RouteSkeleton,
+    children: routes,
+  },
 ])

@@ -98,6 +98,9 @@
   --dot-size: 8px;
   --avatar-size: 40px;
   --panel-w: 280px; /* side panels on tablet and laptop */
+  --sheet-w: 480px; /* bottom sheet as a centered panel from tablet up */
+  --selection-ring: 2px solid var(--color-selection); /* selected piece */
+  --selected-scale: 1.1; /* selected piece: "slight enlargement" */
   --sheet-handle-w: 32px;
   --sheet-handle-h: 3px;
   --skeleton-line: 10px;
