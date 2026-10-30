@@ -58,7 +58,8 @@ export function ScreenLayout({
       {bottomBar && (
         <div
           className={cn(
-            'flex min-h-touch shrink-0 items-center justify-around gap-4 px-4 shadow-bar',
+            // The safe area keeps it clear of the iPhone home indicator.
+            'flex min-h-touch shrink-0 items-center justify-around gap-4 px-4 pb-[env(safe-area-inset-bottom)] shadow-bar',
             // The left panel takes over the bar's tools from tablet up.
             leftPanel && 'tablet:hidden',
           )}

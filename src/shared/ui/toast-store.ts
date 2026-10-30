@@ -1,8 +1,20 @@
 import { useSyncExternalStore } from 'react'
 
+export interface ToastAction {
+  label: string
+  onClick: () => void
+}
+
 export interface Toast {
   id: number
   message: string
+  action?: ToastAction
+}
+
+interface ShowToastOptions {
+  durationMs?: number
+  // A toast with an action stays until the action is used.
+  action?: ToastAction
 }
 
 const DEFAULT_DURATION_MS = 3000
@@ -22,12 +34,17 @@ export function dismissToast(id: number) {
   emit(toasts.filter((toast) => toast.id !== id))
 }
 
-export function showToast(message: string, durationMs = DEFAULT_DURATION_MS) {
+export function showToast(
+  message: string,
+  { durationMs = DEFAULT_DURATION_MS, action }: ShowToastOptions = {},
+) {
   const id = nextId++
-  emit([...toasts, { id, message }])
-  setTimeout(() => {
-    dismissToast(id)
-  }, durationMs)
+  emit([...toasts, { id, message, action }])
+  if (!action) {
+    setTimeout(() => {
+      dismissToast(id)
+    }, durationMs)
+  }
   return id
 }
 

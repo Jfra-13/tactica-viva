@@ -44,6 +44,11 @@ export const es = {
     title: 'Página no encontrada',
     goHome: 'Ir a mis equipos',
   },
+  pwa: {
+    description: 'Pizarra táctica de fútbol 7 en tiempo real.',
+    updateAvailable: 'Nueva versión disponible',
+    update: 'Actualizar',
+  },
   common: {
     loading: 'Cargando…',
     close: 'Cerrar',
