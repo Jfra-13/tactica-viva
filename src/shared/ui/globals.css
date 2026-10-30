@@ -114,6 +114,13 @@
   outline-offset: var(--space-1);
 }
 
+/* Lucide draws round caps by default; D-014 wants square caps and miter joins. */
+@utility icon-stroke {
+  stroke-width: var(--icon-stroke);
+  stroke-linecap: var(--icon-linecap);
+  stroke-linejoin: var(--icon-linejoin);
+}
+
 @layer base {
   :root {
     color-scheme: dark;
