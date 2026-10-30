@@ -75,7 +75,7 @@ La cancha y las fichas no tienen clases porque las dibuja Konva.
 
 | Clases | Token |
 |---|---|
-| `p-1`…`p-8`, `gap-*`, `m-*` | `--space-1`…`--space-8` (`p-1` = 2 px, no 4 px) |
+| `p-0`…`p-8`, `gap-*`, `m-*`, `min-h-0`, `inset-*`, `translate-*` | `--space-0`…`--space-8` (`p-1` = 2 px, no 4 px; sin `--space-0`, `min-h-0` o `px-0` no generan CSS) |
 | `size-touch`, `min-h-touch`, `min-w-touch` | `--touch-min` |
 | `size-icon-sm`, `size-icon-md` | `--icon-sm`, `--icon-md` |
 | `text-xs`…`text-2xl` | `--text-*` (`text-sm` = 13 px) |

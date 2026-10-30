@@ -77,6 +77,7 @@
   --weight-display: var(--weight-medium);
 
   /* Spacing */
+  --space-0: 0px; /* min-h-0, px-0, inset-x-0: without it they emit no CSS */
   --space-1: 2px;
   --space-2: 4px;
   --space-3: 6px;
@@ -96,6 +97,7 @@
   --border-w: 1px;
   --dot-size: 8px;
   --avatar-size: 40px;
+  --panel-w: 280px; /* side panels on tablet and laptop */
   --sheet-handle-w: 32px;
   --sheet-handle-h: 3px;
   --skeleton-line: 10px;

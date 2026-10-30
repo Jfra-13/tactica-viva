@@ -50,6 +50,7 @@
   --color-selection: var(--color-selection);
 
   /* Spacing and sizes: p-1 is --space-1 (2 px), not Tailwind's 4 px */
+  --spacing-0: var(--space-0);
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
   --spacing-3: var(--space-3);
